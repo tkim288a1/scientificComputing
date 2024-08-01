@@ -1,0 +1,464 @@
+* Module 0: Basics of MATLAB (8 Lessons)
+** Introduction to MATLAB
+*** MATLAB as a Calculator
+*** Variables
+*** Scriting with MATLAB
+*** Functions
+*** Live Scripts and Live Functions
+** Elementary Functions
+*** Trig and Inverse Trig Functions
+*** Exponential and Logarithmic Functions
+*** Complex Numbers
+*** Roots
+*** Miscellaneous Functions
+*** Another Way to Display Text
+** Conditional Statements
+*** Relational and Logical Operators
+*** Control Structure
+*** Examples
+*** Exercises
+** Loops
+*** Opening Example
+*** Introduction to FOR-Loop
+*** Loops and Simulations
+*** Pop Quiz
+*** Introduction to WHILE-Loop
+*** Examples
+** Arrays
+*** Basics of Arrays in MATLAB
+*** Array Operations
+*** Array Constructors
+*** Building Arrays Out Of Arrays
+*** Slicing Arrays
+** More on Arrays
+*** Recap: Creating Arrays Examples
+*** Data Manipulation Functions
+*** Timing in MATLAB
+*** Exercises: Vectorization (Going Loopless!)
+** Graphics
+*** Anonymous Functions
+*** 2-D Graphics
+*** 3-D Graphics
+** Function M-File
+*** Function M-File
+*** Example: Spiral Triangle
+*** Appendix: Supplementary Notes
+* Module 1: Preliminaries to Numerical Analysis (2 Lessons)
+** Floating Point Numbers
+*** Errors
+*** Floating Point Numbers
+** Conditioning and Stability
+*** Catastrophic Cancellation
+*** Conditioning
+*** Stability
+* Module 2: Square Linear Systems (5 Lessons + 2 Appendices)
+** Introduction to Square Linear Systems
+*** Opening Example: Polynomial Interpolation
+**** Polynomial Interpolation
+**** Why Do We Care?
+**** Interpolation to Linear System
+**** Example: Interpolating Population Data
+*** Square Linear Systems
+**** Overview
+**** Triangular Systems
+**** General Results
+**** Does It Always Work?
+**** Implementation: Backward Substitution
+**** Implementation: Forward Elimination
+** LU Factorization
+*** Gaussian Elimination
+**** Example
+**** General Procedure
+**** MATLAB Implementation of Gaussian Elimination
+*** LU Factorization
+**** Emulation of Gaussian Elimination
+**** Elementary Matrices
+**** Properties of Elementary Matrices
+**** Gaussian Transformation Matrices
+**** Properties of Gaussian Transformation Matrices
+**** Elementary Row Operation and GTM
+**** Key Example Revisited
+**** Analysis of Example
+**** Generalization: LU Factorization
+**** Implementation of LU Factorization
+**** Solving a Square System Using LU Factorization
+** PLU Factorization
+*** Gaussian Elimination with Partial Pivoting
+**** G.E. with Partial Pivoting: Procedure
+**** G.E. with Partial Pivoting: Example
+**** G.E. with Partial Pivoting: MATLAB Implementation
+**** Why Is Pivoting Necessary?
+*** PLU Factorization
+**** Emulation of Row Interchange
+**** Elementary Permutation Matrices
+**** Row or Column Interchange
+**** Permutation Matrices
+**** Key Example Revisited
+**** Analysis of Example
+**** Generalization: PLU Factorization
+**** Implementation of PLU Factorization
+**** Solving a Square System Using PLU Factorization
+*** Cost of PLU Factorization Algorithm
+**** Notation: Big-O and Asymptotic
+**** FLOP Counting: Timing Vector/Matrix Operations
+**** FLOPS for Major Operations
+**** Cost of Elimination Steps
+**** Cost of Forward Elimination and Backward Substitution
+**** Total Cost of G.E. with Partial Pivoting
+**** Application: Solving Multiple Square Systems Simultaneously
+** Conditioning of Square Linear Systems
+*** Vector and Matrix Norms
+**** Vector Norms
+**** Unit Vectors
+**** Matrix Norms
+**** Induced Matrix Norms
+**** Non-Induced Matrix Norm -- Frobenius Norm
+**** Norms in MATLAB
+*** Conditioning
+**** Conditioning of Solving Linear Systems: Overview
+**** Sensitivity to Perturbation of RHS
+**** Sensitivity to Perturbation of Matrix
+**** Matrix Condition Number
+**** Condition Numbers in MATLAB
+** Exploiting Matrix Structure
+#+BEGIN_EXPORT latex
+% \section{Symmetric Positive Definite Matrices}
+
+\begin{frame}
+  \frametitle{Symmetric Matrices -- LDLT Factorization}
+  Let $A \in \RR^{n \times n}$ be \textbf{symmetric}, that is, $A\tp = A$.
+  \vs
+  \begin{itemize}
+  \item The Gaussian elimination process without pivoting on this symmetric matrix yields
+    \[
+      A = LDL\tp,
+    \]
+    where $L$ is unit lower triangular and $D$ is diagonal. (LDL$^{\rm T}$ Factorization)
+    \vs
+  \item This factorization takes $\sim \frac{1}{3} n^3$ \flops.
+  \item Row pivoting is needed to keep $LDL\tp$ stable, but it is tedious.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Symmetric Positive Definite Matrices -- Cholesky Factorization}
+  Let $A \in \RR^{n \times n}$. \vs
+  \begin{itemize}
+  \item We say that $A$ is \textbf{positive definite} if the \textit{quadratic form} is positive, \textit{i.e.}, $\bx\tp A \bx > 0$ for all $\bx \neq \bzero$, \textit{i.e.},
+    \[
+      \bx\tp A \bx = \sum_{i=1}^{n} \sum_{j=1}^{n} A_{ij}x_i x_j > 0
+      \quad\text{for $\bx \neq \bzero$.}
+    \]
+    \vs
+  \item We say that $A$ is \textbf{symmetric positive definite} (SPD) if $A$ is symmetric and $A$ is positive definite.
+    \vs
+  \item \textbf{Useful.} A symmetric matrix is positive definite if and only if all its eigenvalues are real positive number\footnote{It follows that any SPD matrix is invertible.}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cholesky Factorization -- Connection to LDLT}
+  Let $A \in \RR^{n \times n}$ be a SPD matrix.
+  \vs
+  \begin{itemize}
+  \item Symmetry implies $A = LDL\tp$. \vshalf
+  \item Positive definiteness implies $\bx\tp A \bx = \bx\tp L D L\tp \bx > 0$ for any $\bx \neq \bzero$. \vshalf
+  \end{itemize}
+
+  \vs
+  Consequently, the diagonal element $d_{kk}$ of $D$ is positive for all $k \in \NN[1,n]$, which allows
+  \[
+    A = LDL\tp = (L D^{1/2}) (D^{1/2} L\tp) \equiv R\tp R,
+  \]
+  where $R = D^{1/2}L\tp$ is an upper triangular matrix whose diagonal entries are positive.
+
+
+  % \begingroup
+  % \tiny
+  % \begin{equation*}
+  %   \begin{bmatrix}
+  %     a_{11} & a_{12} & a_{13} & \cdots & a_{1n} \\
+  %     a_{12} & a_{22} & a_{23} & \cdots & a_{2n} \\
+  %     a_{13} & a_{23} & a_{33} & \cdots & a_{3n} \\
+  %     \vdots & \vdots & \vdots & \ddots & \vdots \\
+  %     a_{14} & a_{2n} & a_{3n} & \cdots & a_{nn}
+  %   \end{bmatrix}
+  %   =
+  %   \begin{bmatrix}
+  %     r_{11} &&&&\\
+  %     r_{12} & r_{22} &&&\\
+  %     r_{13} & r_{23} & r_{33} &&\\
+  %     \vdots & \vdots & & \ddots &\\
+  %     r_{1n} & r_{2n} & r_{3n} & \cdots & r_{nn}
+  %   \end{bmatrix}
+  %   \begin{bmatrix}
+  %     r_{11} & r_{12} & r_{13} & \cdots & r_{1n} \\
+  %     & r_{22} & r_{23} & \cdots & r_{2n} \\
+  %     && r_{33} & \cdots & r_{3n} \\
+  %     &&& \ddots & \vdots \\
+  %     &&&& r_{nn}
+  %   \end{bmatrix}
+  % \end{equation*}
+  % \endgroup
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Cholesky Factorization -- Implementation}
+  The decomposition of a SPD matrix $A = R\tp R$ is called the \textbf{Cholesky factorization}.
+  \vs
+  \begin{itemize}
+  \item The calculation of $R$ takes $\sim \frac{1}{3} n^3$ \flops.\vs
+  \item Once $R$ is obtained, $R\tp R \bx = \bb$ can be solved by forward elimination and backward substitution in $\sim 2n^2$ \flops. \vs
+  \item \textbf{General Formula for $R = [r_{jk}]$}: For derivation, see Section 10.3.
+    \begingroup
+    \footnotesize
+    \begin{align*}
+      r_{jj} & = \left( a_{jj} - \sum_{i=1}^{j-1} r_{ij}^2 \right)^{1/2} \\
+      r_{jk} & = \left. \left( a_{jk} - \sum_{i=1}^{j-1} r_{ij}r_{ik} \right) \middle/ r_{jj} \right.
+               \quad \text{for $k=j+1, \, j+2, \, \ldots, \, n$.}
+    \end{align*}
+    \endgroup
+  \item In \matlab, $R$ is computed by
+\begin{verbatim}
+>> R = chol(A)
+\end{verbatim}
+  \end{itemize}
+\end{frame}
+
+% \section{Banded Matrices}
+\begin{frame}[fragile]
+  \frametitle{Banded Matrices}
+  We say that $A \in \RR^{n \times n}$ has \vs
+  \begin{itemize}
+  \item \textbf{upper bandwidth} $b_u$ if $A_{ij} = 0$ for $j-i > b_u$; \vs
+  \item \textbf{lower bandwidth} $b_\ell$ if $A_{ij} = 0$ for $i-j > b_\ell$. \vs
+  \end{itemize}
+  The \textbf{total bandwidth} of $A$ is $b_u + b_\ell + 1$.
+
+  \vspace{2em}
+  \textbf{Remarks.} \vs
+  \begin{itemize}
+  \item If no row pivoting is used, the LU factorization preserves the lower and upper bandwidths of $A$. (Why?) \vs
+  \item Since the zeros appear predictably, the factorization and the triangular substitutions can be done with much less operations. ($O(b_u b_\ell n)$)
+  \item Use \texttt{sparse} function so that \matlab{} can take advantage of the structure, \textit{e.g.},
+\begin{verbatim}
+>> [L, U, P] = lu( sparse(A) );
+\end{verbatim}
+  \end{itemize}
+
+\end{frame}
+#+END_EXPORT
+
+** Appendix: Notes on Row and Column Operations
+*** Notation
+*** Key Operations
+**** Row or Column Extraction
+**** Elementary Permutation Matrices
+**** Row or Column Interchange
+**** Permutation Matrices
+**** Row or Column Rearrangement
+**** Row or Column Rearrangement
+*** Gaussian Transformation Matrices (GTM)
+**** Elementary Row Operation and GTM
+**** Analytical Properties of GTM
+** Appendix: PLU Factorization in Outer Product Form
+* Module 3: Overdetermined Linear Systems (4 Lessons + 1 Appendix)
+** Introduction to Overdetermined Linear Systems
+*** Linear Least Squares Approximation
+*** Example: Temperature Anomaly
+*** Fitting by a Straight Line
+*** Fitting by a Striaght Line: MATLAB Implementation
+*** Fitting by a General Polynomial
+*** Fitting by a General Polynomial: MATLAB Implementation
+*** Backslash Again
+** The Normal Equations
+*** LLS and Normal Equation
+*** Proof of the Forward Implication
+*** Proof of the Backward Implication
+*** Pseudoinverse
+** QR Factorization
+*** Orthogonality
+**** Normal Equation Revisited
+**** Orthogonal Vectors
+**** Matrices with Orthogonal Columns
+**** Orthogonal Matrices
+**** Properties of Orthogonal Matrices
+**** Why Do We Like Orthogonal Vectors?
+*** QR Factorization
+**** The QR Factorization
+**** Thick vs Thin QR Factorization
+**** QR Factorization in MATLAB
+*** Least Squares and QR Factorization
+**** Recap: Least Squares and Pseudoinverse
+**** Pseudoinverse and QR
+**** Least Squares Using QR Factorization
+** Computing QR Factorization
+*** Householder Transformation
+**** Motivation
+**** Properties of Householder Transformation
+**** Geometry Behind Householder Transformation
+*** QR Factorization Algorithm
+**** QR Factorization Algorithm via Triangularization
+**** MATLAB Implementation: MYQR
+**** Which Reflector Is Better?
+*** Appendix: Projection and Reflection
+*** Appendix: Gram-Schmidt Orthogonalization
+**** The Gram--Schmidt Procedure
+**** GS Algorithm
+**** GS Procedure and Thin QR Factorization
+** Appendix: Orthogonal Triangularization by Hand (A Complete Worked Example)
+
+* Module 4: Nonlinear Rootfinding (5 Lessons)
+** Introduction
+*** Problem Statement
+*** Iterative Methods
+*** MATLAB's FZERO
+*** Example
+*** Conditioning
+*** Residual and Backward Error
+*** Multiple Roots
+** Fixed Point Iteration
+*** Fixed Point Iteration
+*** Fixed Point Iteration Algorithm
+*** Examples
+*** Not All Fixed Point Problems Are The Same
+*** Geometry of Fixed Point Iteration
+*** Series Analysis
+*** Note: Rate of Convergence
+*** Note: Local Convergence
+*** Convergence of Fixed Point Iteration
+*** Contraction Maps
+*** When Does FPI Succeed?
+** Newton's Method
+*** Newton's Method
+*** Newton's Method: Illustration
+*** Series Analysis
+*** Convergence of Newton's Method
+*** Implementation
+*** Note: Stopping Criteria
+** Interpolation-Based Methods
+*** Secant Method
+*** Inverse Interpolation
+*** Bisection Method: Bracketing a Root
+** Newton's Method for Nonlinear Systems
+*** Multidimensional Rootfinding Problem
+*** Multidimensional Taylor Series
+*** Example
+*** The Multidimensional Newton's Method
+*** Computer Illustration
+*** Implementation
+** Outro
+*** Revisiting =FZERO=
+*** Quasi-Newton Methods
+*** Basin of Attraction
+*** Nonlinear Least Squares (NLS)
+* Module 5: Piecewise Interpolation and Numerical Calculus (5 Lessons)
+** Introduction
+*** Problem Statement
+*** Pitfalls of Polynomial Interpolation
+*** Illustration of Runge's Phenomenon
+*** Piecewise Polynomials
+*** MATLAB Function: INTERP1
+*** Demonstration: Piecewise Polynomial Interplation
+*** Conditioning
+** Piecewise Linear Interpolation
+*** Hat Functions As Basis
+*** Cardinality Conditions
+*** Recipe for PL Interpolant
+*** Implementation
+*** Error Analysis
+** Piecewise Cubic Interpolation
+*** Hermite Cubic Interpolation
+**** Problem Set-Up: General Piecewise Cubic Interpolation
+**** Hermite Cubic Interpolation
+**** Implementation
+**** Error Analysis
+**** Drawbacks of Hermite Cubic Interpolation
+*** Cubic Splines
+**** Cubic Spline: Problem Set-Up
+**** Connection to Hermite Cubic Interpolation
+**** Derivation of a Linear System for Cubic Splines
+**** Tridiagonal System for Cubic Splines
+**** Implementation of Boundary Conditions
+**** Error Analysis
+** Numerical Differentiation
+*** Introduction
+**** Difference Quotients to Approximate Slopes
+**** Interpolation and Difference Formulas
+**** Common Difference Formulas
+**** Higher Derivatives
+*** Convergence of Difference Formulas
+**** Convergence of Difference Formulas
+**** First-Order Difference Formulas
+**** Second-Order Difference Formulas
+**** MATLAB Demo
+**** Determining Optimal Step Size
+**** Richardson Extrapolation
+**** Another Derivation of 2nd-Order Forward Difference
+** Numerical Integration
+*** Basic Quadrature Methods
+**** Some Questions
+**** Newton-Cotes Formulas
+**** Convergence of Midpoint and Trapezoidal Methods
+**** Convergence of Simpson's Methods
+**** Derivation of Simpson's Method via Extrapolation
+*** Composite Methods
+**** Composite Trapezoidal and Midpoint Methods
+**** Composite Simpson's Methods
+**** Convergence of Composite Methods
+* Module 6: Initial Value Problems for ODEs (3 Lessons)
+** Basics of Initial Value Problems
+*** Initial Value Problem
+*** Analytical Solutions
+*** Is Studying 1st-Order ODEs Enough?
+*** Example
+*** MATLAB's ODE45
+*** Example: Solution Values at Automatically Selected Times
+*** Example: Solution Values at User-Determined Time Nodes
+** Euler's Method
+*** Numerical Solutions
+*** Euler's Method
+*** Accuracy of Euler's Method
+*** Implementation of Euler's Method (for Scalar IVPs)
+*** Implementation of Euler's Method (for System of IVPs)
+** Runge--Kutta Methods
+*** Runge--Kutta Methods
+*** Second-Order RK Methods
+*** Implementation of Improved Euler Method
+*** The RK Method
+*** Implementation of the RK4 Method
+* Module 7: Spectral Theory (EVD and SVD) (3 Lessons)
+** Complex Numbers and Complex Arrays
+*** Complex Numbers
+*** Complex Numbers in MATLAB
+*** Euler's Formula
+*** Polar Representation and Complex Exponential
+*** Complex Vectors
+*** Complex Matrices
+** Eigenvalue Decomposition (EVD)
+*** Calculating EVD in MATLAB
+*** Understanding EVD: Change of Basis
+*** What Is EVD Good For?
+*** Conditioning of Eigenvalues
+** Singular Value Decomposition (SVD)
+*** Different Names for SVD
+*** Singular Value Decomposition
+*** Thick vs Thin SVD
+*** SVD in MATLAB
+*** Understanding SVD
+**** Geometric Perspective
+**** Algebraic Perspective
+**** SVD vs. EVD
+** Applications of SVD
+*** Properties of SVD
+**** SVD and the 2-Norm
+**** Connection to EVD
+*** Reduction of Dimensions
+**** Low-Rank Approximations
+**** Best Rank-$k$ Approximation
+*** Unitary Diagonalization and SVD
+**** Unitary Diagonalization of Hermitian Matrices
+**** Notes on Unitary Diagonalization and Normal Matrices
+**** Unitary Diagonalization and SVD
+**** When Do Unitary EVD and SVD Coincide?
+**** Note: Rayleigh Quotient

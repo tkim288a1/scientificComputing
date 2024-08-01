@@ -1,0 +1,93 @@
+\usepackage{ccicons}
+\usepackage{multicol}
+\newif\ifcolor %% for color cover
+\colorfalse    %% add \colortrue before cover art
+
+
+\newcommand{\dfn}{\textbf}
+%\renewcommand{\vec}[1]{{\overset{\boldsymbol{\rightharpoonup}}{\mathbf{#1}}}\hspace{0in}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+%% Simple horiz vectors
+%\renewcommand{\vector}[1]{\left\langle #1\right\rangle}
+\newcommand{\arrowvec}[1]{{\overset{\rightharpoonup}{#1}}}
+\newcommand{\R}{\mathbb{R}}
+%\newcommand{\transpose}{\intercal}
+\newcommand{\transpose}{\top}
+\newcommand{\dotp}{\bullet}%% dot product
+\renewcommand{\l}{\ell}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Null}{Null}
+\DeclareMathOperator{\Col}{Col}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\col}{col}
+\renewcommand{\hat}{\widehat}
+\newcommand{\N}{\mathbb N}
+ \setcounter{MaxMatrixCols}{20} %% BIG pmatrix
+
+
+\let\defaultAnswerFormat\answerFormatBoxed
+\usetikzlibrary{calc,bending}
+\tikzset{>=stealth}
+\usetikzlibrary{matrix} %% for fancy matrix stuff
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{math}
+
+
+
+
+\usepackage{mdframed} % For framing content
+%\usepackage{ifthen}   % For conditional statements
+
+% Define the 'concept' environment with an optional header
+\newenvironment{concept}[1][]{%
+  \begin{mdframed}[linecolor=black, linewidth=2pt, innertopmargin=5pt, innerbottommargin=5pt, skipabove=12pt, skipbelow=12pt]%
+    \noindent\large\textbf{#1}\normalsize%
+}{%
+  \end{mdframed}%
+}
+
+
+
+%% https://texblog.net/latex-archive/maths/amsmath-matrix/
+%% allows \begin{pmatrix}[cc|c]
+%% \makeatletter
+%% \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+%%   \hskip -\arraycolsep
+%%   \let\@ifnextchar\new@ifnextchar
+%%   \array{#1}}
+%% \makeatother
+
+
+
+
+\colorlet{textColor}{black}
+\colorlet{background}{white}
+\colorlet{penColor}{blue!50!black} % Color of a curve in a plot
+\colorlet{penColor2}{red!50!black}% Color of a curve in a plot
+\colorlet{penColor3}{red!50!blue} % Color of a curve in a plot
+\colorlet{penColor4}{green!50!black} % Color of a curve in a plot
+\colorlet{penColor5}{orange!80!black} % Color of a curve in a plot
+\colorlet{penColor6}{yellow!70!black} % Color of a curve in a plot
+\colorlet{fill1}{penColor!20} % Color of fill in a plot
+\colorlet{fill2}{penColor2!20} % Color of fill in a plot
+\colorlet{fillp}{fill1} % Color of positive area
+\colorlet{filln}{penColor2!20} % Color of negative area
+\colorlet{fill3}{penColor3!20} % Fill
+\colorlet{fill4}{penColor4!20} % Fill
+\colorlet{fill5}{penColor5!20} % Fill
+\colorlet{gridColor}{gray!50} % Color of grid in a plot
+
+
+\makeatletter
+\newcommand\frontstyle{%
+  \def\activitystyle{activity-chapter}
+  \def\maketitle{%
+                {\flushleft\small\sffamily\bfseries\@pretitle\par\vspace{-1.5em}}%
+                {\flushleft\LARGE\sffamily\bfseries\@title \par }%3
+                {\vskip .6em\noindent\textit\theabstract\setcounter{problem}{0}\setcounter{section}{0}}%
+                \par\vspace{2em}    
+                \phantomsection\addcontentsline{toc}{section}{\textbf{\@title}}%
+                \setcounter{titlenumber}{0}
+}}
+\makeatother      

@@ -1,0 +1,176 @@
+\setcounter{tocdepth}{1}
+\makeatletter
+\usepackage[T1]{fontenc}
+\usepackage{stix2}
+\usepackage{gillius}
+\usepackage{multicol}
+
+%% Since font changed -- need to renewcommands again
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\renewcommand{\hat}{\widehat}
+
+
+
+%% Size of the page
+\usepackage[margin=.5in, includehead, includefoot, hmargin={1.8in,1.5in}, paperwidth=8.5in, paperheight=8.5in]{geometry}
+%\usepackage[margin=.5in, includehead, includefoot, hmargin={.8in,.5in}, paperwidth=11in, paperheight=8.5in]{geometry}
+
+
+%% Redefine section and subsection
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\boldmath\normalfont\Large\bfseries\sffamily}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex \@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\boldmath\normalfont\large\bfseries\sffamily}}
+
+
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+                                    {3.25ex \@plus1ex \@minus.2ex}%
+                                    {-1em}%
+                                    {\boldmath\normalfont\normalsize\bfseries\sffamily}}
+
+
+
+
+
+
+%% Redefine "example" and "proposition"
+\let\example\relax
+\let\endexample\relax
+\let\proposition\relax
+\let\endproposition\relax
+%\let\c@example\relax
+\newtheoremstyle{example}
+{\topsep}{\topsep}{\rmfamily}{}{\bfseries\sffamily}{:}{ }{#1 (\thmnote{#3})}
+\theoremstyle{example}
+\newtheorem*{example}{Example}
+\newtheorem*{proposition}{Proposition}
+
+
+%% Redefine "question"
+\let\question\relax
+\let\endquestion\relax
+%% Redefine "warning"
+\let\warning\relax
+\let\endwarning\relax
+%% Redefine "definition"
+\let\definition\relax
+\let\enddefinition\relax
+%\let\c@example\relax
+\newtheoremstyle{definition}
+{\topsep}{\topsep}{\rmfamily}{}{\bfseries\sffamily}{:}{ }{#1}
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{warning}{WARNING}
+\newtheorem*{question}{Question}
+
+
+
+% Define the 'concept' environment with an optional header
+\renewenvironment{algorithm}[1][]{%
+  \begin{mdframed}[linecolor=black, linewidth=2pt, innertopmargin=5pt, innerbottommargin=5pt, skipabove=12pt, skipbelow=12pt]%
+    \noindent\textbf{#1}\normalsize\\%
+}{%
+  \end{mdframed}%
+}
+
+
+
+
+%% Redefines "explanation"
+\renewmdenv[
+  font=\upshape,
+  linewidth=3mm,
+  topline=false,
+  bottomline=false,
+  leftline=true,
+  rightline=false, 
+  leftmargin=0,
+  innertopmargin=0pt,
+  innerbottommargin=0pt,
+  skipbelow=\baselineskip,
+  linecolor=textColor!20!white,
+  fontcolor=textColor,
+  backgroundcolor=background
+]{explanation}%
+
+
+%% Redefines "selectAll"
+\renewenvironment{selectAll}[1][]
+{\begin{trivlist}\item[\hskip \labelsep\bfseries Select All Correct Answers:]\hfil\begin{enumerate}}
+    {\end{enumerate}\end{trivlist}}
+
+
+%% Redefine "multipleChice"
+\renewenvironment{multipleChoice}[1][]
+{% Environment Start Code
+\setkeys{multipleChoice}{#1}%
+\recordvariable{\mc@id}%
+\begin{trivlist}
+\item[\hskip \labelsep\bfseries Multiple Choice:]\hfil
+\begin{enumerate}
+}% Note this means that \item has to be the first line after \begin{multipleChoice}.
+{% Environment End Code
+\end{enumerate}
+\end{trivlist}
+}
+
+
+
+
+
+
+
+
+
+%% Define exercise collection. 
+\newcommand{\exerciseCollection}[2]{
+\def\input@path{{#1}}
+\activity{#1#2}}
+%%%%
+
+
+
+\newcommand{\practicestyle}{
+\newgeometry{hmargin={.8in,.5in}}
+\let\exercise\relax
+\let\endexercise\relax
+\let\c@exercise\relax
+\let\problem\relax
+\let\endproblem\relax
+\let\c@problem\relax
+\newtheoremstyle{problem}
+{\topsep}{\topsep}{\rmfamily}{}{\bfseries\sffamily}{)}{ }{}
+\theoremstyle{problem}
+\newtheorem{problem}{}
+\newtheorem{exercise}[problem]{}
+\twocolumn[\section{Exercises for Chapter~\thetitlenumber}\vspace*{-1em}\hrule height .5mm \vspace*{.5em}]
+\scriptsize
+%% \let\exercise\relax
+%%   \let\endexercise\relax
+%%   \let\c@exercise\relax 
+%%   \newtheoremstyle{exercise}
+%%                   {\topsep}{\topsep}{\rmfamily}{}{\bfseries}{)}{~}{}
+%% \theoremstyle{exercise}
+%% \newtheorem{exercise}{}
+}
+\renewcommand\chapterstyle{%
+\restoregeometry
+  \def\activitystyle{activity-chapter}
+  \onecolumn
+  \normalsize
+  %\onecolumn
+  \def\maketitle{%
+    \addtocounter{titlenumber}{1}%
+                    {\flushleft\small\sffamily\bfseries\@pretitle\par\vspace{-1.5em}}%
+                    {\flushleft\LARGE\sffamily\bfseries\thetitlenumber\hspace{1em}\@title \par }%
+                    {\vskip .6em\noindent\textit\theabstract\setcounter{problem}{0}\setcounter{section}{0}}%
+                    \par\vspace{2em}
+                    \phantomsection\addcontentsline{toc}{section}{\textbf{\thetitlenumber\hspace{1em}\@title}}%
+}}
+
+\onecolumn
+\makeatother

@@ -1,0 +1,83 @@
+#+TITLE: Lecture Notes on Scientific Computing
+#+STARTUP: overview indent
+
+These lecture notes are prepared for [[https://math.osu.edu/courses/math-3607][Math 3607: Beginning Scientific Computing]] at the Ohio State University. Each note is to be compiled into a pdf file and an interactive textbook webpage via Ximera ([[https://ximera.osu.edu/intro/gettingStarted][website]], [[https://github.com/XimeraProject/gettingStarted/blob/master/questionAndAnswerTypes/questionAndAnswerTypes.tex][project Github]]).
+
+* Course Contents
+The course materials are divided into several modules. See more detailed outline [[file:outline.org][here]].
+** Module 0: Basics of MATLAB
+** Module 1: Preliminaries to Numerical Analysis
+** Module 2: Square Linear Systems
+** Module 3: Overdetermined Linear Systems
+** Module 4: Nonlinear Rootfinding
+** Module 5: Piecewise Interpolation and Numerical Calculus
+** Module 6: Initial Value Problems for ODEs
+** Module 7: Spectral Theory (EVD and SVD)
+
+* Sample Schedule
+Below is a sample schedule for typical 15-week semester.
+
+| WK | TOPIC                                           |
+|----+-------------------------------------------------|
+|    | Introduction to MATLAB                          |
+|  1 | Elementary Functions and Conditional Statements |
+|    | Loops                                           |
+|----+-------------------------------------------------|
+|    | Arrays                                          |
+|  2 | More on Arrays                                  |
+|    | More on Arrays (continued)                      |
+|----+-------------------------------------------------|
+|    | 2-D Graphics                                    |
+|  3 | 3-D Graphics                                    |
+|    | Function M-Files                                |
+|----+-------------------------------------------------|
+|    | Floating Point Numbers                          |
+|  4 | Problems and Conditioning                       |
+|    | Stability of Algorithms                         |
+|----+-------------------------------------------------|
+|    | Polynomial Interpolation and Linear Systems     |
+|  5 | LU Factorization                                |
+|    | PLU Factorization                               |
+|----+-------------------------------------------------|
+|    | PLU Factorization (continued)                   |
+|  6 | Vector and Matrix Norms                         |
+|    | Matrix Condition Number                         |
+|----+-------------------------------------------------|
+|    | Review for Midterm 1                            |
+|  7 | *Midterm 1*                                       |
+|    | Least Squares and Overdetermined Systems        |
+|----+-------------------------------------------------|
+|    | Normal Equation                                 |
+|  8 | Orthogonality and QR Factorization              |
+|    | Householder Transformation                      |
+|----+-------------------------------------------------|
+|    | Computing QR                                    |
+|  9 | The Rootfinding Problem                         |
+|    | Fixed Point Iteration                           |
+|----+-------------------------------------------------|
+|    | Convergence of Rootfinding Algorithms           |
+| 10 | Newton's Method / Secant Method                 |
+|    | Newton's Method for Nonlinear Systems           |
+|----+-------------------------------------------------|
+|    | The Interpolation Problem                       |
+| 11 | Piecewise Linear Interpolation                  |
+|    | Piecewise Cubic Interpolation                   |
+|----+-------------------------------------------------|
+|    | Review for Midterm 2                            |
+| 12 | *Midterm 2*                                       |
+|    | Finite Differences                              |
+|----+-------------------------------------------------|
+|    | Convergence of Finite Differences               |
+| 13 | Numerical Integration                           |
+|    | Composite Quadrature Methods                    |
+|----+-------------------------------------------------|
+|    | Initial Value Problems                          |
+| 14 | Euler's Method                                  |
+|    | Runge-Kutta Method                              |
+|----+-------------------------------------------------|
+| 15 | Review for Final                                |
+
+* References
+- [FNC] :: Driscoll, T. & Braun, R. /Fundamentals of Numerical Computation/ (SIAM, 2018)
+- [NLA] :: Trefethen, L. & Bau, D. /Numerical Linear Algebra/ (SIAM, 1997)
+- [FOAM1] :: Humpherys, J., Jarvis, T., & Evans E. /Foundations of Applied Mathematics: Volume 1 -- Mathematical Analysis/ (SIAM, 2017)
