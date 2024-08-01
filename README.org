@@ -5,14 +5,14 @@ These lecture notes are prepared for [[https://math.osu.edu/courses/math-3607][M
 
 * Course Contents
 The course materials are divided into several modules. See more detailed outline [[file:outline.org][here]].
-** Module 0: Basics of MATLAB
-** Module 1: Preliminaries to Numerical Analysis
-** Module 2: Square Linear Systems
-** Module 3: Overdetermined Linear Systems
-** Module 4: Nonlinear Rootfinding
-** Module 5: Piecewise Interpolation and Numerical Calculus
-** Module 6: Initial Value Problems for ODEs
-** Module 7: Spectral Theory (EVD and SVD)
+- Module 0: Basics of MATLAB
+- Module 1: Preliminaries to Numerical Analysis
+- Module 2: Square Linear Systems
+- Module 3: Overdetermined Linear Systems
+- Module 4: Nonlinear Rootfinding
+- Module 5: Piecewise Interpolation and Numerical Calculus
+- Module 6: Initial Value Problems for ODEs
+- Module 7: Spectral Theory (EVD and SVD)
 
 * Sample Schedule
 Below is a sample schedule for typical 15-week semester.

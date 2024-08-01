@@ -1,48 +1,48 @@
+#+STARTUP: indent
+
 * Module 0: Basics of MATLAB (8 Lessons)
 ** Introduction to MATLAB
-*** MATLAB as a Calculator
-*** Variables
-*** Scriting with MATLAB
-*** Functions
-*** Live Scripts and Live Functions
+- MATLAB as a Calculator
+- Variables
+- Scriting with MATLAB
+- Functions
+- Live Scripts and Live Functions
 ** Elementary Functions
-*** Trig and Inverse Trig Functions
-*** Exponential and Logarithmic Functions
-*** Complex Numbers
-*** Roots
-*** Miscellaneous Functions
-*** Another Way to Display Text
+- Trig and Inverse Trig Functions
+- Exponential and Logarithmic Functions
+- Complex Numbers
+- Roots
+- Miscellaneous Functions
+- Another Way to Display Text
 ** Conditional Statements
-*** Relational and Logical Operators
-*** Control Structure
-*** Examples
-*** Exercises
+- Relational and Logical Operators
+- Control Structure
+- Examples
+- Exercises
 ** Loops
-*** Opening Example
-*** Introduction to FOR-Loop
-*** Loops and Simulations
-*** Pop Quiz
-*** Introduction to WHILE-Loop
-*** Examples
+- Opening Example
+- Introduction to FOR-Loop
+- Loops and Simulations
+- Introduction to WHILE-Loop
+- Examples
 ** Arrays
-*** Basics of Arrays in MATLAB
-*** Array Operations
-*** Array Constructors
-*** Building Arrays Out Of Arrays
-*** Slicing Arrays
+- Basics of Arrays in MATLAB
+- Array Operations
+- Array Constructors
+- Building Arrays Out Of Arrays
+- Slicing Arrays
 ** More on Arrays
-*** Recap: Creating Arrays Examples
-*** Data Manipulation Functions
-*** Timing in MATLAB
-*** Exercises: Vectorization (Going Loopless!)
+- Data Manipulation Functions
+- Timing in MATLAB
+- Exercises: Vectorization (Going Loopless!)
 ** Graphics
-*** Anonymous Functions
-*** 2-D Graphics
-*** 3-D Graphics
+- Anonymous Functions
+- 2-D Graphics
+- 3-D Graphics
 ** Function M-File
-*** Function M-File
-*** Example: Spiral Triangle
-*** Appendix: Supplementary Notes
+- Function M-File
+- Example: Spiral Triangle
+
 * Module 1: Preliminaries to Numerical Analysis (2 Lessons)
 ** Floating Point Numbers
 *** Errors
@@ -121,133 +121,6 @@
 **** Matrix Condition Number
 **** Condition Numbers in MATLAB
 ** Exploiting Matrix Structure
-#+BEGIN_EXPORT latex
-% \section{Symmetric Positive Definite Matrices}
-
-\begin{frame}
-  \frametitle{Symmetric Matrices -- LDLT Factorization}
-  Let $A \in \RR^{n \times n}$ be \textbf{symmetric}, that is, $A\tp = A$.
-  \vs
-  \begin{itemize}
-  \item The Gaussian elimination process without pivoting on this symmetric matrix yields
-    \[
-      A = LDL\tp,
-    \]
-    where $L$ is unit lower triangular and $D$ is diagonal. (LDL$^{\rm T}$ Factorization)
-    \vs
-  \item This factorization takes $\sim \frac{1}{3} n^3$ \flops.
-  \item Row pivoting is needed to keep $LDL\tp$ stable, but it is tedious.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Symmetric Positive Definite Matrices -- Cholesky Factorization}
-  Let $A \in \RR^{n \times n}$. \vs
-  \begin{itemize}
-  \item We say that $A$ is \textbf{positive definite} if the \textit{quadratic form} is positive, \textit{i.e.}, $\bx\tp A \bx > 0$ for all $\bx \neq \bzero$, \textit{i.e.},
-    \[
-      \bx\tp A \bx = \sum_{i=1}^{n} \sum_{j=1}^{n} A_{ij}x_i x_j > 0
-      \quad\text{for $\bx \neq \bzero$.}
-    \]
-    \vs
-  \item We say that $A$ is \textbf{symmetric positive definite} (SPD) if $A$ is symmetric and $A$ is positive definite.
-    \vs
-  \item \textbf{Useful.} A symmetric matrix is positive definite if and only if all its eigenvalues are real positive number\footnote{It follows that any SPD matrix is invertible.}.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Cholesky Factorization -- Connection to LDLT}
-  Let $A \in \RR^{n \times n}$ be a SPD matrix.
-  \vs
-  \begin{itemize}
-  \item Symmetry implies $A = LDL\tp$. \vshalf
-  \item Positive definiteness implies $\bx\tp A \bx = \bx\tp L D L\tp \bx > 0$ for any $\bx \neq \bzero$. \vshalf
-  \end{itemize}
-
-  \vs
-  Consequently, the diagonal element $d_{kk}$ of $D$ is positive for all $k \in \NN[1,n]$, which allows
-  \[
-    A = LDL\tp = (L D^{1/2}) (D^{1/2} L\tp) \equiv R\tp R,
-  \]
-  where $R = D^{1/2}L\tp$ is an upper triangular matrix whose diagonal entries are positive.
-
-
-  % \begingroup
-  % \tiny
-  % \begin{equation*}
-  %   \begin{bmatrix}
-  %     a_{11} & a_{12} & a_{13} & \cdots & a_{1n} \\
-  %     a_{12} & a_{22} & a_{23} & \cdots & a_{2n} \\
-  %     a_{13} & a_{23} & a_{33} & \cdots & a_{3n} \\
-  %     \vdots & \vdots & \vdots & \ddots & \vdots \\
-  %     a_{14} & a_{2n} & a_{3n} & \cdots & a_{nn}
-  %   \end{bmatrix}
-  %   =
-  %   \begin{bmatrix}
-  %     r_{11} &&&&\\
-  %     r_{12} & r_{22} &&&\\
-  %     r_{13} & r_{23} & r_{33} &&\\
-  %     \vdots & \vdots & & \ddots &\\
-  %     r_{1n} & r_{2n} & r_{3n} & \cdots & r_{nn}
-  %   \end{bmatrix}
-  %   \begin{bmatrix}
-  %     r_{11} & r_{12} & r_{13} & \cdots & r_{1n} \\
-  %     & r_{22} & r_{23} & \cdots & r_{2n} \\
-  %     && r_{33} & \cdots & r_{3n} \\
-  %     &&& \ddots & \vdots \\
-  %     &&&& r_{nn}
-  %   \end{bmatrix}
-  % \end{equation*}
-  % \endgroup
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Cholesky Factorization -- Implementation}
-  The decomposition of a SPD matrix $A = R\tp R$ is called the \textbf{Cholesky factorization}.
-  \vs
-  \begin{itemize}
-  \item The calculation of $R$ takes $\sim \frac{1}{3} n^3$ \flops.\vs
-  \item Once $R$ is obtained, $R\tp R \bx = \bb$ can be solved by forward elimination and backward substitution in $\sim 2n^2$ \flops. \vs
-  \item \textbf{General Formula for $R = [r_{jk}]$}: For derivation, see Section 10.3.
-    \begingroup
-    \footnotesize
-    \begin{align*}
-      r_{jj} & = \left( a_{jj} - \sum_{i=1}^{j-1} r_{ij}^2 \right)^{1/2} \\
-      r_{jk} & = \left. \left( a_{jk} - \sum_{i=1}^{j-1} r_{ij}r_{ik} \right) \middle/ r_{jj} \right.
-               \quad \text{for $k=j+1, \, j+2, \, \ldots, \, n$.}
-    \end{align*}
-    \endgroup
-  \item In \matlab, $R$ is computed by
-\begin{verbatim}
->> R = chol(A)
-\end{verbatim}
-  \end{itemize}
-\end{frame}
-
-% \section{Banded Matrices}
-\begin{frame}[fragile]
-  \frametitle{Banded Matrices}
-  We say that $A \in \RR^{n \times n}$ has \vs
-  \begin{itemize}
-  \item \textbf{upper bandwidth} $b_u$ if $A_{ij} = 0$ for $j-i > b_u$; \vs
-  \item \textbf{lower bandwidth} $b_\ell$ if $A_{ij} = 0$ for $i-j > b_\ell$. \vs
-  \end{itemize}
-  The \textbf{total bandwidth} of $A$ is $b_u + b_\ell + 1$.
-
-  \vspace{2em}
-  \textbf{Remarks.} \vs
-  \begin{itemize}
-  \item If no row pivoting is used, the LU factorization preserves the lower and upper bandwidths of $A$. (Why?) \vs
-  \item Since the zeros appear predictably, the factorization and the triangular substitutions can be done with much less operations. ($O(b_u b_\ell n)$)
-  \item Use \texttt{sparse} function so that \matlab{} can take advantage of the structure, \textit{e.g.},
-\begin{verbatim}
->> [L, U, P] = lu( sparse(A) );
-\end{verbatim}
-  \end{itemize}
-
-\end{frame}
-#+END_EXPORT
 
 ** Appendix: Notes on Row and Column Operations
 *** Notation
@@ -406,6 +279,7 @@
 **** Composite Trapezoidal and Midpoint Methods
 **** Composite Simpson's Methods
 **** Convergence of Composite Methods
+
 * Module 6: Initial Value Problems for ODEs (3 Lessons)
 ** Basics of Initial Value Problems
 *** Initial Value Problem
@@ -427,6 +301,7 @@
 *** Implementation of Improved Euler Method
 *** The RK Method
 *** Implementation of the RK4 Method
+
 * Module 7: Spectral Theory (EVD and SVD) (3 Lessons)
 ** Complex Numbers and Complex Arrays
 *** Complex Numbers
