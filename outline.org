@@ -45,295 +45,172 @@
 
 * Module 1: Preliminaries to Numerical Analysis (2 Lessons)
 ** Floating Point Numbers
-*** Errors
-*** Floating Point Numbers
+- Errors
+- Floating Point Numbers
 ** Conditioning and Stability
-*** Catastrophic Cancellation
-*** Conditioning
-*** Stability
-* Module 2: Square Linear Systems (5 Lessons + 2 Appendices)
-** Introduction to Square Linear Systems
-*** Opening Example: Polynomial Interpolation
-**** Polynomial Interpolation
-**** Why Do We Care?
-**** Interpolation to Linear System
-**** Example: Interpolating Population Data
-*** Square Linear Systems
-**** Overview
-**** Triangular Systems
-**** General Results
-**** Does It Always Work?
-**** Implementation: Backward Substitution
-**** Implementation: Forward Elimination
-** LU Factorization
-*** Gaussian Elimination
-**** Example
-**** General Procedure
-**** MATLAB Implementation of Gaussian Elimination
-*** LU Factorization
-**** Emulation of Gaussian Elimination
-**** Elementary Matrices
-**** Properties of Elementary Matrices
-**** Gaussian Transformation Matrices
-**** Properties of Gaussian Transformation Matrices
-**** Elementary Row Operation and GTM
-**** Key Example Revisited
-**** Analysis of Example
-**** Generalization: LU Factorization
-**** Implementation of LU Factorization
-**** Solving a Square System Using LU Factorization
-** PLU Factorization
-*** Gaussian Elimination with Partial Pivoting
-**** G.E. with Partial Pivoting: Procedure
-**** G.E. with Partial Pivoting: Example
-**** G.E. with Partial Pivoting: MATLAB Implementation
-**** Why Is Pivoting Necessary?
-*** PLU Factorization
-**** Emulation of Row Interchange
-**** Elementary Permutation Matrices
-**** Row or Column Interchange
-**** Permutation Matrices
-**** Key Example Revisited
-**** Analysis of Example
-**** Generalization: PLU Factorization
-**** Implementation of PLU Factorization
-**** Solving a Square System Using PLU Factorization
-*** Cost of PLU Factorization Algorithm
-**** Notation: Big-O and Asymptotic
-**** FLOP Counting: Timing Vector/Matrix Operations
-**** FLOPS for Major Operations
-**** Cost of Elimination Steps
-**** Cost of Forward Elimination and Backward Substitution
-**** Total Cost of G.E. with Partial Pivoting
-**** Application: Solving Multiple Square Systems Simultaneously
-** Conditioning of Square Linear Systems
-*** Vector and Matrix Norms
-**** Vector Norms
-**** Unit Vectors
-**** Matrix Norms
-**** Induced Matrix Norms
-**** Non-Induced Matrix Norm -- Frobenius Norm
-**** Norms in MATLAB
-*** Conditioning
-**** Conditioning of Solving Linear Systems: Overview
-**** Sensitivity to Perturbation of RHS
-**** Sensitivity to Perturbation of Matrix
-**** Matrix Condition Number
-**** Condition Numbers in MATLAB
-** Exploiting Matrix Structure
+- Catastrophic Cancellation
+- Conditioning
+- Stability
 
+* Module 2: Square Linear Systems (5 Lessons)
+** Introduction to Square Linear Systems
+- Opening Example: Polynomial Interpolation
+- Triangular systems
+** LU Factorization
+- Gaussian Elimination
+- LU Factorization
+** PLU Factorization
+- Gaussian Elimination with Partial Pivoting
+- PLU Factorization
+- Cost of PLU Factorization Algorithm
+** Conditioning of Square Linear Systems
+- Vector and Matrix Norms
+- Conditioning
+** Exploiting Matrix Structure
+- Banded Matrices
+- Symmetric Positive Matrices
 ** Appendix: Notes on Row and Column Operations
-*** Notation
-*** Key Operations
-**** Row or Column Extraction
-**** Elementary Permutation Matrices
-**** Row or Column Interchange
-**** Permutation Matrices
-**** Row or Column Rearrangement
-**** Row or Column Rearrangement
-*** Gaussian Transformation Matrices (GTM)
-**** Elementary Row Operation and GTM
-**** Analytical Properties of GTM
+- Notation
+- Key Operations
+- Gaussian Transformation Matrices (GTM)
 ** Appendix: PLU Factorization in Outer Product Form
-* Module 3: Overdetermined Linear Systems (4 Lessons + 1 Appendix)
+
+* Module 3: Overdetermined Linear Systems (4 Lessons)
 ** Introduction to Overdetermined Linear Systems
-*** Linear Least Squares Approximation
-*** Example: Temperature Anomaly
-*** Fitting by a Straight Line
-*** Fitting by a Striaght Line: MATLAB Implementation
-*** Fitting by a General Polynomial
-*** Fitting by a General Polynomial: MATLAB Implementation
-*** Backslash Again
+- Linear Least Squares Approximation
+- Example: Temperature Anomaly
+- Fitting by a Straight Line
+- Fitting by a Striaght Line: MATLAB Implementation
+- Fitting by a General Polynomial
+- Fitting by a General Polynomial: MATLAB Implementation
+- Backslash Again
 ** The Normal Equations
-*** LLS and Normal Equation
-*** Proof of the Forward Implication
-*** Proof of the Backward Implication
-*** Pseudoinverse
+- LLS and Normal Equation
+- Proof of the Forward Implication
+- Proof of the Backward Implication
+- Pseudoinverse
 ** QR Factorization
-*** Orthogonality
-**** Normal Equation Revisited
-**** Orthogonal Vectors
-**** Matrices with Orthogonal Columns
-**** Orthogonal Matrices
-**** Properties of Orthogonal Matrices
-**** Why Do We Like Orthogonal Vectors?
-*** QR Factorization
-**** The QR Factorization
-**** Thick vs Thin QR Factorization
-**** QR Factorization in MATLAB
-*** Least Squares and QR Factorization
-**** Recap: Least Squares and Pseudoinverse
-**** Pseudoinverse and QR
-**** Least Squares Using QR Factorization
+- Orthogonality
+- QR Factorization
+- Least Squares and QR Factorization
 ** Computing QR Factorization
-*** Householder Transformation
-**** Motivation
-**** Properties of Householder Transformation
-**** Geometry Behind Householder Transformation
-*** QR Factorization Algorithm
-**** QR Factorization Algorithm via Triangularization
-**** MATLAB Implementation: MYQR
-**** Which Reflector Is Better?
-*** Appendix: Projection and Reflection
-*** Appendix: Gram-Schmidt Orthogonalization
-**** The Gram--Schmidt Procedure
-**** GS Algorithm
-**** GS Procedure and Thin QR Factorization
-** Appendix: Orthogonal Triangularization by Hand (A Complete Worked Example)
+- Householder Transformation
+- QR Factorization Algorithm
+- Appendix: Projection and Reflection
+- Appendix: Gram-Schmidt Orthogonalization
 
 * Module 4: Nonlinear Rootfinding (5 Lessons)
 ** Introduction
-*** Problem Statement
-*** Iterative Methods
-*** MATLAB's FZERO
-*** Example
-*** Conditioning
-*** Residual and Backward Error
-*** Multiple Roots
+- Problem Statement
+- Iterative Methods
+- MATLAB's FZERO
+- Example
+- Conditioning
+- Residual and Backward Error
+- Multiple Roots
 ** Fixed Point Iteration
-*** Fixed Point Iteration
-*** Fixed Point Iteration Algorithm
-*** Examples
-*** Not All Fixed Point Problems Are The Same
-*** Geometry of Fixed Point Iteration
-*** Series Analysis
-*** Note: Rate of Convergence
-*** Note: Local Convergence
-*** Convergence of Fixed Point Iteration
-*** Contraction Maps
-*** When Does FPI Succeed?
+- Fixed Point Iteration
+- Fixed Point Iteration Algorithm
+- Examples
+- Not All Fixed Point Problems Are The Same
+- Geometry of Fixed Point Iteration
+- Series Analysis
+- Note: Rate of Convergence
+- Note: Local Convergence
+- Convergence of Fixed Point Iteration
+- Contraction Maps
+- When Does FPI Succeed?
 ** Newton's Method
-*** Newton's Method
-*** Newton's Method: Illustration
-*** Series Analysis
-*** Convergence of Newton's Method
-*** Implementation
-*** Note: Stopping Criteria
+- Newton's Method
+- Newton's Method: Illustration
+- Series Analysis
+- Convergence of Newton's Method
+- Implementation
+- Note: Stopping Criteria
 ** Interpolation-Based Methods
-*** Secant Method
-*** Inverse Interpolation
-*** Bisection Method: Bracketing a Root
+- Secant Method
+- Inverse Interpolation
+- Bisection Method: Bracketing a Root
 ** Newton's Method for Nonlinear Systems
-*** Multidimensional Rootfinding Problem
-*** Multidimensional Taylor Series
-*** Example
-*** The Multidimensional Newton's Method
-*** Computer Illustration
-*** Implementation
-** Outro
-*** Revisiting =FZERO=
-*** Quasi-Newton Methods
-*** Basin of Attraction
-*** Nonlinear Least Squares (NLS)
+- Multidimensional Rootfinding Problem
+- Multidimensional Taylor Series
+- Example
+- The Multidimensional Newton's Method
+- Computer Illustration
+- Implementation
+** Optional Topics
+- Revisiting =FZERO=
+- Quasi-Newton Methods
+- Basin of Attraction
+- Nonlinear Least Squares (NLS)
+
 * Module 5: Piecewise Interpolation and Numerical Calculus (5 Lessons)
 ** Introduction
-*** Problem Statement
-*** Pitfalls of Polynomial Interpolation
-*** Illustration of Runge's Phenomenon
-*** Piecewise Polynomials
-*** MATLAB Function: INTERP1
-*** Demonstration: Piecewise Polynomial Interplation
-*** Conditioning
+- Problem Statement
+- Pitfalls of Polynomial Interpolation
+- Illustration of Runge's Phenomenon
+- Piecewise Polynomials
+- MATLAB Function: INTERP1
+- Demonstration: Piecewise Polynomial Interplation
+- Conditioning
 ** Piecewise Linear Interpolation
-*** Hat Functions As Basis
-*** Cardinality Conditions
-*** Recipe for PL Interpolant
-*** Implementation
-*** Error Analysis
+- Hat Functions As Basis
+- Cardinality Conditions
+- Recipe for PL Interpolant
+- Implementation
+- Error Analysis
 ** Piecewise Cubic Interpolation
-*** Hermite Cubic Interpolation
-**** Problem Set-Up: General Piecewise Cubic Interpolation
-**** Hermite Cubic Interpolation
-**** Implementation
-**** Error Analysis
-**** Drawbacks of Hermite Cubic Interpolation
-*** Cubic Splines
-**** Cubic Spline: Problem Set-Up
-**** Connection to Hermite Cubic Interpolation
-**** Derivation of a Linear System for Cubic Splines
-**** Tridiagonal System for Cubic Splines
-**** Implementation of Boundary Conditions
-**** Error Analysis
+- Hermite Cubic Interpolation
+- Cubic Splines
 ** Numerical Differentiation
-*** Introduction
-**** Difference Quotients to Approximate Slopes
-**** Interpolation and Difference Formulas
-**** Common Difference Formulas
-**** Higher Derivatives
-*** Convergence of Difference Formulas
-**** Convergence of Difference Formulas
-**** First-Order Difference Formulas
-**** Second-Order Difference Formulas
-**** MATLAB Demo
-**** Determining Optimal Step Size
-**** Richardson Extrapolation
-**** Another Derivation of 2nd-Order Forward Difference
+- Finite Difference Formulas
+- Convergence of Difference Formulas
 ** Numerical Integration
-*** Basic Quadrature Methods
-**** Some Questions
-**** Newton-Cotes Formulas
-**** Convergence of Midpoint and Trapezoidal Methods
-**** Convergence of Simpson's Methods
-**** Derivation of Simpson's Method via Extrapolation
-*** Composite Methods
-**** Composite Trapezoidal and Midpoint Methods
-**** Composite Simpson's Methods
-**** Convergence of Composite Methods
+- Basic Quadrature Methods
+- Composite Methods
 
 * Module 6: Initial Value Problems for ODEs (3 Lessons)
 ** Basics of Initial Value Problems
-*** Initial Value Problem
-*** Analytical Solutions
-*** Is Studying 1st-Order ODEs Enough?
-*** Example
-*** MATLAB's ODE45
-*** Example: Solution Values at Automatically Selected Times
-*** Example: Solution Values at User-Determined Time Nodes
+- Initial Value Problem
+- Analytical Solutions
+- Is Studying 1st-Order ODEs Enough?
+- Example
+- MATLAB's ODE45
+- Example: Solution Values at Automatically Selected Times
+- Example: Solution Values at User-Determined Time Nodes
 ** Euler's Method
-*** Numerical Solutions
-*** Euler's Method
-*** Accuracy of Euler's Method
-*** Implementation of Euler's Method (for Scalar IVPs)
-*** Implementation of Euler's Method (for System of IVPs)
+- Numerical Solutions
+- Euler's Method
+- Accuracy of Euler's Method
+- Implementation of Euler's Method (for Scalar IVPs)
+- Implementation of Euler's Method (for System of IVPs)
 ** Runge--Kutta Methods
-*** Runge--Kutta Methods
-*** Second-Order RK Methods
-*** Implementation of Improved Euler Method
-*** The RK Method
-*** Implementation of the RK4 Method
+- Runge--Kutta Methods
+- Second-Order RK Methods
+- Implementation of Improved Euler Method
+- The RK Method
+- Implementation of the RK4 Method
 
-* Module 7: Spectral Theory (EVD and SVD) (3 Lessons)
+* Optional: Spectral Theory (EVD and SVD) (3 Lessons)
 ** Complex Numbers and Complex Arrays
-*** Complex Numbers
-*** Complex Numbers in MATLAB
-*** Euler's Formula
-*** Polar Representation and Complex Exponential
-*** Complex Vectors
-*** Complex Matrices
+- Complex Numbers
+- Complex Numbers in MATLAB
+- Euler's Formula
+- Polar Representation and Complex Exponential
+- Complex Vectors
+- Complex Matrices
 ** Eigenvalue Decomposition (EVD)
-*** Calculating EVD in MATLAB
-*** Understanding EVD: Change of Basis
-*** What Is EVD Good For?
-*** Conditioning of Eigenvalues
+- Calculating EVD in MATLAB
+- Understanding EVD: Change of Basis
+- What Is EVD Good For?
+- Conditioning of Eigenvalues
 ** Singular Value Decomposition (SVD)
-*** Different Names for SVD
-*** Singular Value Decomposition
-*** Thick vs Thin SVD
-*** SVD in MATLAB
-*** Understanding SVD
-**** Geometric Perspective
-**** Algebraic Perspective
-**** SVD vs. EVD
+- Different Names for SVD
+- Singular Value Decomposition
+- Thick vs Thin SVD
+- SVD in MATLAB
+- Understanding SVD
 ** Applications of SVD
-*** Properties of SVD
-**** SVD and the 2-Norm
-**** Connection to EVD
-*** Reduction of Dimensions
-**** Low-Rank Approximations
-**** Best Rank-$k$ Approximation
-*** Unitary Diagonalization and SVD
-**** Unitary Diagonalization of Hermitian Matrices
-**** Notes on Unitary Diagonalization and Normal Matrices
-**** Unitary Diagonalization and SVD
-**** When Do Unitary EVD and SVD Coincide?
-**** Note: Rayleigh Quotient
+- Properties of SVD
+- Reduction of Dimensions
+- Unitary Diagonalization and SVD
