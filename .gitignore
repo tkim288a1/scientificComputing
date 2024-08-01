@@ -53,3 +53,5 @@ mypdflatex
 auto/
 
 *notes.org
+*.db
+*.db.lock
