@@ -1,4 +1,4 @@
-% Created 2024-08-01 Thu 12:32
+% Created 2024-08-05 Mon 12:52
 % Intended LaTeX compiler: pdflatex
 \documentclass[]{ximera}
 \usepackage[utf8]{inputenc}
@@ -33,7 +33,6 @@
 
 \maketitle
 \section{Errors}
-\label{sec:orgf6508a2}
 Let $x$ be some number of interest and let $\tilde{x}$ be an approximation to it obtained by an \textbf{algorithm}.
 
 We estimate of the accuracy of the computed value via
@@ -49,7 +48,6 @@ We estimate of the accuracy of the computed value via
 One thing to note is that an absolute error has the same unit as $x$, while a relative error is dimensionless due to the division. If an absolute error or relative error is small, we say that $\tilde{x}$ is \textbf{accurate}.
 
 \section{Example: Stirling's Formula}
-\label{sec:orgd802b31}
 Stirling's formula provides a ``good'' approximation to $n!$ for large $n$:
 \begin{equation}
   \label{eq:stirling}
@@ -66,7 +64,6 @@ Assuming that the exact value of $n!$ is found by \texttt{factorial}, estimate $
  rel_err = abs((x0-x)/x)
  acc_digits = -log10(rel_err)
 \end{lstlisting}
-\vs
 
 \begingroup\scriptsize
 \begin{minipage}{0.31\linewidth}
@@ -104,7 +101,6 @@ acc_digits = NaN
 \endgroup
 
 \section{Sources of Errors}
-\label{sec:org2296ed9}
 So the big question now is about where errors are coming from. The main sources of errors in the context of numerical computation are:
 
 \begin{itemize}
@@ -114,9 +110,7 @@ So the big question now is about where errors are coming from. The main sources 
 \end{itemize}
 
 \section{Floating Point Numbers}
-\label{sec:orgb1612d1}
 \subsection{Limitations of Digital Representations}
-\label{sec:orga9dcf25}
 A digital computer uses a finite number of bits to represent a real number and so it cannot represent all real numbers.
 \begin{itemize}
 \item The represented numbers cannot be arbitrarily large or small;
@@ -125,7 +119,6 @@ A digital computer uses a finite number of bits to represent a real number and s
 So for all operations involving real numbers, it uses a subset of $\RR$ called the \textbf{floating point numbers}, $\mathbb{F}$.
 
 \subsection{Toy Model: Base-10}
-\label{sec:org4552e99}
 Consider a base-10 calculator which represents a nonzero number $x$ in the following format:
 \begin{equation*}
 x = (-1)^s \times d_0 . d_1 d_2 \times 10^e
@@ -169,7 +162,6 @@ Such numbers are called the \emph{floating point numbers}.
 \end{itemize}
 
 \subsection{Floating Point Numbers: Theoretical Description}
-\label{sec:orgc9103cd}
 In the computer, numbers are stored using binary bits (0 or 1). So a floating point number must be expressed in base 2:
 \[
 x = (-1)^s \times 1.b_1 b_2 \ldots {b_d}_{(2)} \times 2^{a_1 a_2 \ldots {a_n}_{(2)} - \beta}
@@ -218,7 +210,6 @@ The spacing in $\FF$ between $2^E$ and $2^{E+1}$ is $2^{E-d}$.
 \end{itemize}
 
 \subsection{Rounding Function and Relative Error}
-\label{sec:org2fe8153}
 Let $\text{fl}:\RR \to \FF$ be a rounding function which maps every real number $x$ to the nearest element of $\FF$. Consider a positive real number $x \in [2^E, 2^{E+1})$ for some allowed exponent $E$.
 \begin{itemize}
 \item Since the spacing of $\FF$ in the interval is $2^{E-d}$,
@@ -242,7 +233,6 @@ Every real number is represented as a floating point number with a uniformly bou
 \end{center}
 
 \subsection{IEEE 754 Standard: Double Precision Floating Point Numbers}
-\label{sec:org72596b8}
 MATLAB, by default, uses IEEE \emph{double precision} floating point numbers, stored in memory in 64 bits (or 8 bytes).
 \begin{equation*}
   x = (-1)^s \times 1.b_1 b_2 \ldots {b_{52}}_{(2)} \times 2^{a_1 a_2 \ldots {a_{11}}_{(2)} - 1023}
