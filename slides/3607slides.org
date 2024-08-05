@@ -1,4 +1,4 @@
-#+TITLE: SP23M3607 Lectures
+#+TITLE: Math 3607 Lecture Slides
 #+AUTHOR: Tae Eun Kim, Ph.D.
 :DRAWER:
 #+STARTUP: overview indent beamer
@@ -8,7 +8,6 @@
 #+MACRO: cont @@latex: \color{gray}{\normalsize (cont')} @@
 #+TAGS: ignore(i) noexport(n)
 :END:
-
 * Config                                                                                :ignore:
 #+LATEX_CLASS: beamer
 # #+LATEX_CLASS_OPTIONS: [10pt,t,handout,ignorenonframetext,aspectratio=169]
