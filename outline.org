@@ -1,4 +1,5 @@
 #+STARTUP: indent
+#+TITLE: Outline of the Course Contents
 
 * Module 0: Basics of MATLAB (8 Lessons)
 ** Introduction to MATLAB
